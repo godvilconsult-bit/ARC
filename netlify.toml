@@ -3,6 +3,10 @@
   publish = "dist"
 
 [build.environment]
+  NODE_VERSION = "22"
+
+# Single-page app: navigation is client-side, so serve index.html for any path
+# that does not match a static asset.
   NODE_VERSION = "20"
 
 [[redirects]]

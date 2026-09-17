@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+out/
+build/
+.next/
+
+# Environment files — NEVER commit secrets
+.env
+.env.local
+.env.*.local
+
+# Circle / Supabase secrets
+.circle/
+*recovery_file*
+
+# Vite
+*.local
+
+# Foundry / Solidity build artifacts
+contracts/out/
+contracts/cache/
+
+# Logs
+*.log
+console.jsonl
+traces.jsonl
+/tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

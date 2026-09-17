@@ -20,6 +20,7 @@ import Checkout from './components/Checkout'
 import Bridge from './components/Bridge'
 import Swap from './components/Swap'
 import { ExternalLink } from 'lucide-react'
+import { ConnectKitButton } from 'connectkit'
 
 // Developer section sub-tabs
 type DevTab = 'keys' | 'docs' | 'logs' | 'webhooks'

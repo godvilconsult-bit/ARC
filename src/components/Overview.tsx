@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { TrendingUp, TrendingDown, ArrowUpRight, Users, Wallet, CreditCard, Zap, Activity, Loader2 } from 'lucide-react'
 import { VOLUME_DATA, formatUSD, formatDateTime, STATUS_BADGE, STATUS_LABELS } from '../data/demo'
 import { useTransactions, useCustomers, useWallets } from '../lib/useDb'
+import SetupGuide from './SetupGuide'
 import type { DashboardView } from './Sidebar'
 interface Props { onNavigate: (v: DashboardView) => void }
 
@@ -89,6 +90,7 @@ export default function Overview({ onNavigate }: Props) {
 
   return (
     <div className="space-y-6">
+      <SetupGuide />
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

@@ -16,8 +16,9 @@ create table if not exists customers (
   status        text not null default 'active' check (status in ('active','suspended','pending_kyc')),
   balance       numeric(18,6) not null default 0,
   verified      boolean not null default false,
-  transactions  integer not null default 0,
-  metadata      jsonb default '{}',
+  transactions      integer not null default 0,
+  transaction_count integer not null default 0,
+  metadata          jsonb default '{}',
   created_at    timestamptz not null default now(),
   updated_at    timestamptz not null default now()
 );

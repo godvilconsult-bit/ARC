@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Plus, X, Send, Trash2, CheckCircle, AlertCircle, Loader2, RefreshCw } from 'lucide-react'
 import { useWebhookEndpoints, useWebhookDeliveries, db } from '../lib/useDb'
 import type { DbWebhookEndpoint } from '../lib/useDb'
+import { sendTestWebhook } from '../lib/webhookService'
 import { toast } from 'sonner'
 
 const ALL_EVENTS = [
@@ -95,9 +96,16 @@ export default function Webhooks() {
   const loading = epLoading || delLoading
 
   const sendTest = (ep: DbWebhookEndpoint) => {
-    toast.promise(
-      new Promise(r => setTimeout(r, 1200)),
-      { loading: `Sending test event to ${ep.url}…`, success: 'Test event delivered successfully', error: 'Delivery failed' }
+    void toast.promise(
+      sendTestWebhook(ep.id).then(res => {
+        if (!res.success) throw new Error(`HTTP ${res.code ?? 'timeout'}`)
+        return res
+      }),
+      {
+        loading: `Sending test event to ${ep.url.slice(0, 40)}…`,
+        success: (res: { ms: number; code: number | null }) => `Delivered in ${res.ms}ms · HTTP ${res.code}`,
+        error: (e: Error) => `Delivery failed: ${e.message}`,
+      }
     )
   }
 
